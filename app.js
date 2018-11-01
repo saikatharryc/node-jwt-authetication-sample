@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 
@@ -13,6 +14,11 @@ app.use(cors());
 
 const config = require('./config');
 
+mongoose.connect(
+  config.MONGO.URI,
+  config.MONGO.OPTIONS
+);
+
 // enable the use of request body parsing middleware
 app.use(bodyParser.json());
 app.use(
@@ -20,7 +26,7 @@ app.use(
     extended: true,
   })
 );
-
+apiRoutes.includeRoutes(app);
 
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
@@ -60,6 +66,13 @@ app.use((err, req, res, next) => {
   next();
   return res.status(err.status || 500).json(errorObj);
 });
-
+process.on('SIGTERM', function () {
+    //do something before Gracefully shut it down
+  process.exit(0);
+});
+process.on('SIGINT', function () {
+    //do something before Gracefully shut it down
+  process.exit(0);
+});
 
 module.exports = app;
