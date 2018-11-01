@@ -10,10 +10,13 @@ router.post("/signup", (req, res, next) => {
       status: 400
     });
   }
-  UserAuthCont.register(req.body)
+  const currenthost="http://"+req.headers.host;
+  UserAuthCont.register(currenthost,req.body)
     .then(data => {
-      delete data.password;
-      return res.json(data);
+      return res.json({
+        message:
+          "please confirm your email to login,\n an confirmation link sent to your registered mail ID."
+      });
     })
     .catch(error => {
       return next(error);
@@ -27,6 +30,21 @@ router.post("/login", (req, res, next) => {
     });
   }
   UserAuthCont.login(req.body)
+    .then(data => {
+      return res.json(data);
+    })
+    .catch(error => {
+      return next(error);
+    });
+});
+router.get("/verification/:id", (req, res, next) => {
+  if (!req.params.id) {
+    return next({
+      status: "400",
+      message: "Invalid request"
+    });
+  }
+  UserAuthCont.verification(req.params.id)
     .then(data => {
       return res.json(data);
     })

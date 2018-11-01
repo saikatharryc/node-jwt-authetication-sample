@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique:true
+  },
+  emailVerified:{
+    type:Boolean,
+    default:false
   }
 });
 UserSchema.plugin(beautifyUnique, { message: 'Error, {PATH} already Exists.' });
@@ -42,7 +46,7 @@ UserSchema.pre("save", function(next) {
 
 UserSchema.methods.comparePassword = function(pass, cb) {
   //as password field property has select is false
-  Users.findOne({ _id: this._id })
+  Users.findOne({ _id: this._id,emailVerified:true })
     .select("_id")
     .select("+password")
     .exec()

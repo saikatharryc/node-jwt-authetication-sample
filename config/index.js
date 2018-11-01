@@ -8,6 +8,11 @@ const config = {
   JWT: {
     secret: "uyg2hx3ub3iuzoxuo",
     expire: 3600
+  },
+  MAIL:{
+    user:"qh2vd6pk2sf6goa4@ethereal.email",
+    pass:"xM26V8waGjpWruHpSB",
+    smtp_host:"smtp.ethereal.email"
   }
 };
 Object.freeze(config);
