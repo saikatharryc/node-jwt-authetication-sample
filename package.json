@@ -1,0 +1,33 @@
+{
+  "name": "auth_starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/www",
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saikatharryc/node-jwt-authetication-sample.git"
+  },
+  "keywords": [
+    "jwt",
+    "authentication",
+    "node",
+    "express.js"
+  ],
+  "author": "saikat chakrabortty <saikatchakrabortty2@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saikatharryc/node-jwt-authetication-sample/issues"
+  },
+  "homepage": "https://github.com/saikatharryc/node-jwt-authetication-sample#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0",
+    "mongoose": "^5.3.8"
+  }
+}
